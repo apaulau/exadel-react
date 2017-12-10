@@ -1,24 +1,104 @@
-.App {
-  text-align: center;
+@import url(http://fonts.googleapis.com/css?family=Montserrat+Alternates);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+html,
+body {
+  background-color: #fff;
+  color: #555;
+  font-family: Arial sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  background-color: #34495e;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
+.row {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.search {
+  display: flex;
+  position: relative;
+  margin: 5em auto;
+  width: 70%;
+  flex-direction: row;
+  box-shadow: 1px 1px 0 rgb(22, 160, 133), 2px 2px 0 rgb(22, 160, 133), 3px 3px 0 rgb(22, 160, 133), 4px 4px 0 rgb(22, 160, 133), 5px 5px 0 rgb(22, 160, 133), 6px 6px 0 rgb(22, 160, 133), 7px 7px 0 rgb(22, 160, 133);
+}
+
+.search>input[type=text],
+.search>button {
+  display: block;
+  font: 1.2em 'Montserrat Alternates';
+}
+
+.search>input[type=text] {
+  flex: 1;
+  padding: 0.6em;
+  border: 0.2em solid rgb(26, 188, 156);
+}
+
+.search>button {
+  padding: 0.6em 0.8em;
+  background-color: rgb(26, 188, 156);
   color: white;
+  border: none;
 }
 
-.App-intro {
-  font-size: large;
+.limit {
+  display: flex;
+  position: fixed;
+  left: 5px;
+  margin: 5px;
+  width: 145px;
+  flex-direction: row;
+  box-shadow: 1px 1px 0 rgb(22, 160, 133), 2px 2px 0 rgb(22, 160, 133), 3px 3px 0 rgb(22, 160, 133), 4px 4px 0 rgb(22, 160, 133), 5px 5px 0 rgb(22, 160, 133), 6px 6px 0 rgb(22, 160, 133), 7px 7px 0 rgb(22, 160, 133);
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.limit>input[type=number],
+.limit>label {
+  display: block;
+  font: 1em 'Montserrat Alternates';
+}
+
+.limit>input[type=number] {
+  flex: 1;
+  width: 75px;
+  padding: 0.6em 0 0.6em 0.6em;
+  border: 0.2em solid rgb(26, 188, 156);
+}
+
+.limit>label {
+  padding: 0.8em 0.8em;
+  background-color: rgb(26, 188, 156);
+  color: white;
+  border: none;
+}
+
+button.load-more {
+  margin: 5em auto;
+  padding: 0.6em 0.8em;
+  background-color: rgb(26, 188, 156);
+  color: white;
+  display: block;
+  font: 1.2em 'Montserrat Alternates';
+  border: none;
+  box-shadow: 1px 1px 0 rgb(22, 160, 133), 2px 2px 0 rgb(22, 160, 133), 3px 3px 0 rgb(22, 160, 133), 4px 4px 0 rgb(22, 160, 133), 5px 5px 0 rgb(22, 160, 133), 6px 6px 0 rgb(22, 160, 133), 7px 7px 0 rgb(22, 160, 133);
+}
+
+ul.image-grid {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-grid .image {
+  margin-right: 10px;
 }
