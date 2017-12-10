@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './ImageGrid.css';
 
-const Search = props =>
+const ImageGrid = props =>
   <ul className="image-grid">
     {
       props.results.map(item => {
@@ -15,4 +16,8 @@ const Search = props =>
     }
   </ul>;
 
-export default Search;
+ImageGrid.propTypes = {
+  results: PropTypes.array.isRequired
+}
+
+export default ImageGrid;

@@ -2,7 +2,7 @@ import React from 'react';
 
 import './Loader.css';
 
-const Loader = props =>
+const Loader = () =>
   <div id="loader">
     <div id="box"></div>
     <div id="hill"></div>

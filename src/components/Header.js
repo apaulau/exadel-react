@@ -3,7 +3,7 @@ import {NavLink} from 'react-router-dom';
 
 import './Header.css';
 
-const Header = props =>
+const Header = () =>
 	<header className="header">
 		<h2>GIF</h2>
 		<nav>

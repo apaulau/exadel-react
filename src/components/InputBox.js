@@ -1,9 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './InputBox.css';
 
-const InputBox = ({clazz, label, type, placeholder, value, onChange, button, onSubmit, onButtonClick}) => {
-
+const InputBox = ({clazz, label, type = 'text', placeholder, value, onChange, button, onSubmit, onButtonClick}) => {
   const input = (
     <div className={`${clazz} input-box`}>
       {label ? <label>{label}</label> : ''}
@@ -19,5 +19,16 @@ const InputBox = ({clazz, label, type, placeholder, value, onChange, button, onS
   }
 }
 
+InputBox.propTypes = {
+  clazz: PropTypes.string,
+  label: PropTypes.string,
+  type: PropTypes.string,
+  placeholder: PropTypes.string,
+  button: PropTypes.string,
+  defaultValue: PropTypes.any,
+  onChange: PropTypes.func,
+  onSubmit: PropTypes.func,
+  onButtonClick: PropTypes.func
+};
 
 export default InputBox;

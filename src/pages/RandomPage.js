@@ -69,7 +69,7 @@ class RandomPage extends Component {
 
         {this.state.result ?
           <div>
-            <img src={this.state.result.image_url} />
+            <img src={this.state.result.image_url} alt={this.state.result.caption} />
           </div>
           : ''}
 
