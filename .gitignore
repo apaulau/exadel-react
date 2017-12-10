@@ -57,3 +57,8 @@ typings/
 # dotenv environment variables file
 .env
 
+./typings.json
+typings.json
+
+typings/
+typings
