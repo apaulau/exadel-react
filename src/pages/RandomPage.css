@@ -1,0 +1,12 @@
+.random {
+  text-align: center;
+}
+
+.delay {
+  margin: 5rem auto;
+  width: 21rem;
+}
+
+.random img {
+  max-width: 100%;
+}

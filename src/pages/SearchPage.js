@@ -3,6 +3,8 @@ import axios from 'axios';
 
 import Loader from '../components/Loader';
 
+import './SearchPage.css';
+
 const URL = 'http://api.giphy.com/v1/gifs/search';
 const API_KEY = 'JokfEsQ6phaio2LlwNgGHhpBr47QE89e';
 
@@ -49,8 +51,8 @@ class SearchPage extends Component {
   }
 
   handleLimitChange(event) {
-    this.setState({ limit: event.target.value });
-    this.handleSearch();
+    this.setState({ limit: Number(event.target.value) });
+    setTimeout(this.handleSearch, 0);
   }
 
   loadMore(event) {
@@ -76,7 +78,7 @@ class SearchPage extends Component {
         {this.state.loading ? <Loader /> : ''}
 
         <form onSubmit={this.handleSearch}>
-          <div className="search">
+          <div className="search box">
             <input type="text" placeholder="what gif are you searching for?"
               value={this.state.query}
               onChange={this.handleQueryChange} />
@@ -84,7 +86,7 @@ class SearchPage extends Component {
           </div>
         </form>
 
-        <div className="limit">
+        <div className="limit box">
           <label>Limit</label>
           <input type="number" placeholder="limit" value={this.state.limit} onChange={this.handleLimitChange} />
         </div>

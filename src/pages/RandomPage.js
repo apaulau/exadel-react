@@ -1,75 +1,81 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 
-const URL = 'http://api.giphy.com/v1/gifs/search';
-const API_KEY = 'JokfEsQ6phaio2LlwNgGHhpBr47QE89e';
+import Loader from '../components/Loader';
 
-/**
- * axios documentation and examples at https://github.com/axios/axios
- */
+import './RandomPage.css';
+
+const URL = 'http://api.giphy.com/v1/gifs/random';
+const API_KEY = 'JokfEsQ6phaio2LlwNgGHhpBr47QE89e';
 
 class RandomPage extends Component {
 
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.state = {
-            results: [],
-            query: ''
-        };
+    this.state = {
+      loading: true,
+      result: null,
+      query: ''
+    };
 
-        this.handleSearch = this.handleSearch.bind(this);
-        this.handleQueryChange = this.handleQueryChange.bind(this);
-    }
+    this.delay = 5000;
 
-    componentDidMount() {
-    }
+    this.loadGif = this.loadGif.bind(this);
+    this.updateDelay = this.updateDelay.bind(this);
+    this.updateInterval = this.updateInterval.bind(this);
 
-    handleSearch(event) {
-        event.preventDefault();
+    this.interval = setInterval(this.loadGif, this.delay);
+  }
 
-        axios.get(URL, {
-            params: {api_key: API_KEY, q: this.state.query}
-        }).then(response => {
-            this.setState({results: response.data.data});
-        }).catch(error => {
-            console.log(error);
-        })
-    }
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
 
-    handleQueryChange(event) {
-        this.setState({
-            query: event.target.value
-        })
-    }
+  loadGif() {
+    axios.get(URL, {
+      params: { api_key: API_KEY }
+    }).then(response => {
+      this.setState({ result: response.data.data, loading: false });
+    }).catch(error => {
+      console.log(error);
+    })
+  }
 
-    render() {
-        return (
-            <div>
-                <h1>Ajax Example</h1>
-                <hr/>
+  updateDelay(event) {
+    event.preventDefault();
 
-                <form onSubmit={this.handleSearch}>
-                    <label htmlFor="ajaxGifQuery">Query</label>
-                    <input id="ajaxGifQuery" type="text"
-                           value={this.state.query}
-                           onChange={this.handleQueryChange}/>
-                </form>
+    this.delay = event.target.value;
+  }
 
-                <ul>
-                    {
-                        this.state.results.map(item => {
-                            return (
-                                <li key={item.id}>
-                                    <img src={item.images.preview_gif.url} alt={item.slug}/>
-                                </li>
-                            );
-                        })
-                    }
-                </ul>
-            </div>
-        );
-    }
+  updateInterval(event) {
+    event.preventDefault();
+
+    clearInterval(this.interval);
+    this.interval = setInterval(this.loadGif, this.delay);
+  }
+
+  render() {
+    return (
+      <div className="random">
+
+        {this.state.loading ? <Loader /> : ''}
+
+        <div className="delay box">
+          <label>Delay</label>
+          <input type="number" defaultValue={this.delay} onChange={this.updateDelay} />
+          <button type="button" onClick={this.updateInterval}>Save!</button>
+        </div>
+
+        {this.state.result ?
+          <div>
+            <img src={this.state.result.image_url} />
+          </div>
+          : ''}
+
+      </div>
+    );
+  }
 
 }
 
