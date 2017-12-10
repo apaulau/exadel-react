@@ -14,37 +14,3 @@ body {
   max-width: 800px;
   margin: 0 auto;
 }
-
-.box {
-  display: flex;
-  flex-direction: row;
-  box-shadow: 1px 1px 0 rgb(22, 160, 133), 2px 2px 0 rgb(22, 160, 133), 3px 3px 0 rgb(22, 160, 133), 4px 4px 0 rgb(22, 160, 133), 5px 5px 0 rgb(22, 160, 133), 6px 6px 0 rgb(22, 160, 133), 7px 7px 0 rgb(22, 160, 133);
-}
-
-.box>input,
-.box>button,
-.box>label {
-  display: block;
-  font: 1.2rem 'Montserrat Alternates';
-}
-
-.box>input {
-  flex: 1;
-  width: 100%;
-  padding: 0.6rem 0 0.6rem 0.6rem;
-  border: 0.2rem solid rgb(26, 188, 156);
-}
-
-.box>button {
-  padding: 0.6rem 0.8rem;
-  background-color: rgb(26, 188, 156);
-  color: white;
-  border: none;
-}
-
-.box>label {
-  padding: 0.8rem 0.8rem;
-  background-color: rgb(26, 188, 156);
-  color: white;
-  border: none;
-}

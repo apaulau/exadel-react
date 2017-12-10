@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import axios from 'axios';
-
-import Loader from '../components/Loader';
 
 import './SearchPage.css';
 
+import InputBox from '../components/InputBox';
+import ImageGrid from '../components/ImageGrid';
+import LoadMore from '../components/LoadMore';
+import Loader from '../components/Loader';
+
 const URL = 'http://api.giphy.com/v1/gifs/search';
 const API_KEY = 'JokfEsQ6phaio2LlwNgGHhpBr47QE89e';
-
-/**
- * axios documentation and examples at https://github.com/axios/axios
- */
+const DEFAULT_LIMIT = 15;
 
 class SearchPage extends Component {
 
@@ -21,7 +21,7 @@ class SearchPage extends Component {
       loading: false,
       results: [],
       query: '',
-      limit: 15
+      limit: DEFAULT_LIMIT
     };
 
     this.handleSearch = this.handleSearch.bind(this);
@@ -43,7 +43,7 @@ class SearchPage extends Component {
       this.setState({ results: response.data.data, loading: false });
     }).catch(error => {
       console.log(error);
-    })
+    });
   }
 
   handleQueryChange(event) {
@@ -51,8 +51,12 @@ class SearchPage extends Component {
   }
 
   handleLimitChange(event) {
-    this.setState({ limit: Number(event.target.value) });
-    setTimeout(this.handleSearch, 0);
+    const limit = Number(event.target.value);
+    this.setState({ limit });
+
+    if (limit) {
+      setTimeout(this.handleSearch, 0);
+    }
   }
 
   loadMore(event) {
@@ -73,41 +77,22 @@ class SearchPage extends Component {
 
   render() {
     return (
-      <div>
-
+      <Fragment>
         {this.state.loading ? <Loader /> : ''}
 
-        <form onSubmit={this.handleSearch}>
-          <div className="search box">
-            <input type="text" placeholder="what gif are you searching for?"
-              value={this.state.query}
-              onChange={this.handleQueryChange} />
-            <button type="button" onClick={this.handleSearch}>Find!</button>
-          </div>
-        </form>
+        <InputBox clazz="limit" label="Limit" type="number" placeholder="specify limit"
+          value={this.state.limit}
+          onChange={this.handleLimitChange}/>
 
-        <div className="limit box">
-          <label>Limit</label>
-          <input type="number" placeholder="limit" value={this.state.limit} onChange={this.handleLimitChange} />
-        </div>
+        <InputBox clazz="search" type="text" placeholder="what gif are you looking for?" button="Find"
+          value={this.state.query}
+          onChange={this.handleQueryChange}
+          onSubmit={this.handleSearch}/>
 
-        {
-          this.state.results.length ?
-            <ul className="image-grid">
-              {
-                this.state.results.map(item => {
-                  return (
-                    <li key={item.id} className="image">
-                      <img src={item.images.preview_gif.url} alt={item.slug} />
-                    </li>
-                  );
-                })
-              }
-            </ul> : ''
-        }
+        <ImageGrid results={this.state.results} />
 
-        {this.state.results.length ? <button type="button" className="load-more" onClick={this.loadMore}>MOOOORE!</button> : ''}
-      </div>
+        {this.state.results.length ? <LoadMore handler={this.loadMore} /> : ''}
+      </Fragment>
     );
   }
 

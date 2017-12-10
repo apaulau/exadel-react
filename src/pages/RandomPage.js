@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import InputBox from '../components/InputBox';
 import Loader from '../components/Loader';
 
 import './RandomPage.css';
@@ -61,11 +62,10 @@ class RandomPage extends Component {
 
         {this.state.loading ? <Loader /> : ''}
 
-        <div className="delay box">
-          <label>Delay</label>
-          <input type="number" defaultValue={this.delay} onChange={this.updateDelay} />
-          <button type="button" onClick={this.updateInterval}>Save!</button>
-        </div>
+        <InputBox clazz="delay" label="Delay" type="number"
+          value={this.delay}
+          onChange={this.updateDelay}
+          button="Save" onButtonClick={this.updateInterval} />
 
         {this.state.result ?
           <div>

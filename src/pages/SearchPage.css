@@ -10,31 +10,3 @@
   left: 5px;
   width: 145px;
 }
-
-.limit>input,
-.limit>label {
-  font-size: 1.2rem;
-}
-
-button.load-more {
-  margin: 5rem auto;
-  padding: 0.6rem 0.8rem;
-  background-color: rgb(26, 188, 156);
-  color: white;
-  display: block;
-  font: 1.2em 'Montserrat Alternates';
-  border: none;
-  box-shadow: 1px 1px 0 rgb(22, 160, 133), 2px 2px 0 rgb(22, 160, 133), 3px 3px 0 rgb(22, 160, 133), 4px 4px 0 rgb(22, 160, 133), 5px 5px 0 rgb(22, 160, 133), 6px 6px 0 rgb(22, 160, 133), 7px 7px 0 rgb(22, 160, 133);
-}
-
-ul.image-grid {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-}
-
-.image-grid .image {
-  margin-right: 10px;
-}

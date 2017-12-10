@@ -1,0 +1,11 @@
+ul.image-grid {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-grid .image {
+  margin-right: 10px;
+}
