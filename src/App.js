@@ -4,7 +4,7 @@ import './App.css';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import createHistory from 'history/createBrowserHistory';
-import { Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux';
 import { createEpicMiddleware, combineEpics } from 'redux-observable';
 
@@ -48,17 +48,17 @@ class App extends Component {
         <div className="App">
           <Provider store={store}>
               <ConnectedRouter history={history}>
+                  <div>
+                    <Header />
 
-                <div>
-                  <Header />
-
-                  <div className="row">
-                    <Route exact path="/" component={Search}/>
-                    <Route exact path="/random" component={Random}/>
-
+                    <div className="row">
+                      <Switch>
+                        <Redirect from="/" exact to="/search" />
+                        <Route exact path="/search" component={Search}/>
+                        <Route exact path="/random" component={Random}/>
+                      </Switch>
+                    </div>
                   </div>
-                </div>
-
               </ConnectedRouter>
           </Provider>
         </div>
