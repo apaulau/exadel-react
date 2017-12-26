@@ -3,19 +3,35 @@ import PropTypes from 'prop-types';
 
 import './InputBox.css';
 
-const InputBox = ({clazz, label, type = 'text', placeholder, value, onChange, button, onSubmit, onButtonClick}) => {
-  const input = (
-    <div className={`${clazz} input-box`}>
-      {label ? <label>{label}</label> : ''}
-      <input type={type} placeholder={placeholder} defaultValue={value} onChange={onChange} />
-      {button ? <button type={onSubmit ? 'submit' : 'button'} onClick={onButtonClick}>{button}</button> : ''}
-    </div>
-  )
+class InputBox extends React.Component {
+  constructor(props) {
+    super(props);
 
-  if (onSubmit) {
-    return <form onSubmit={onSubmit}>{input}</form>
-  } else {
-    return input
+    this.handleButtonClick = this.handleButtonClick.bind(this);
+  }
+
+  handleButtonClick(event) {
+    this.props.onButtonClick(this.input.value);
+  }
+
+  render() {
+    const {clazz, label, type = 'text', placeholder, value, onChange, button, onSubmit} = this.props;
+
+    const input = (
+      <div className={`${clazz} input-box`}>
+        {label ? <label>{label}</label> : ''}
+
+        <input type={type} placeholder={placeholder} defaultValue={value} onChange={onChange} ref={input => this.input = input} />
+
+        {button ? <button type={onSubmit ? 'submit' : 'button'} onClick={this.handleButtonClick}>{button}</button> : ''}
+      </div>
+    )
+
+    if (onSubmit) {
+      return <form onSubmit={onSubmit}>{input}</form>
+    } else {
+      return input
+    }
   }
 }
 

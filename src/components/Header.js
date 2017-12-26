@@ -9,7 +9,7 @@ const Header = () =>
 		<nav>
 			<ul>
 				<li>
-					<NavLink to="/search">Search</NavLink>
+					<NavLink to="/">Search</NavLink>
 				</li>
 				<li>
 					<NavLink to="/random">Random</NavLink>

@@ -6,7 +6,7 @@ import './ImageGrid.css';
 const ImageGrid = props =>
   <ul className="image-grid">
     {
-      props.results.map(item => {
+      props.items.map(item => {
         return (
           <li key={item.id} className="image">
             <img src={item.images.preview_gif.url} alt={item.slug} />
@@ -17,7 +17,7 @@ const ImageGrid = props =>
   </ul>;
 
 ImageGrid.propTypes = {
-  results: PropTypes.array.isRequired
+  items: PropTypes.array.isRequired
 }
 
 export default ImageGrid;
